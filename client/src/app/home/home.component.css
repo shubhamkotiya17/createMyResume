@@ -1,0 +1,19 @@
+
+.img {
+    background-image: url("~src/assets/homebackground.jpg") ;
+    background-size: cover;
+    height: 800px;
+}
+
+.btn-align {
+    margin-top: 10%;
+    margin-left: 40%;
+    height: 100px;
+    width: 300px;
+    color: black;
+}
+
+.createMyResumeText{
+    font-size: 28px;font-weight: 500;
+    color: black;
+}
