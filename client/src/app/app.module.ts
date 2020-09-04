@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, SocialLoginModule  } from 'angularx-social-login';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, So
     BrowserModule,
     AppRoutingModule,
     SocialLoginModule,
+    FormsModule,
+    ReactiveFormsModule, 
     AngularFontAwesomeModule
   ],
   providers: [

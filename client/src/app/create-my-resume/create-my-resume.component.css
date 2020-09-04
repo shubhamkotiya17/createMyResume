@@ -42,4 +42,16 @@
     color: blue;
 }
 
+.dynamic-text-input{
+    width: 35%; display: inline;
+}
+
+.uploadedImage{
+    width: 250px;
+    height: 200px;
+    margin-left: 70%;
+    margin-top: -28%;
+    border: 3px dotted whitesmoke;
+}
+
 /* / for file type */
