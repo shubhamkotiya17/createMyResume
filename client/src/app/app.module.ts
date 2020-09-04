@@ -10,6 +10,7 @@ import { CreateMyResumeComponent } from './create-my-resume/create-my-resume.com
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, SocialLoginModule  } from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,24 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SocialLoginModule,
     AngularFontAwesomeModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+        
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('1377132759151586'),
+          }
+        ],
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
