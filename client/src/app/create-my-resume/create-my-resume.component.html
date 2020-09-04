@@ -8,61 +8,74 @@
     <!-- form for resume -->
     <div  style="margin-top: 150px;">
         
-        <form>
+        <form [formGroup]="resumeForm" (ngSubmit)="submitResumeForm()">
             <h4 class="form-heading">Personal Details</h4>
             <hr class="line-color">
 
             <div style="margin-left: 30%;">
                 <div class="form-group">
-                    <input type="text" class="form-control"  style="width: 35%;" placeholder="Full Name ..." id="fullname">
+                    <input type="text" class="form-control"  formControlName="fullName" style="width: 35%;" placeholder="Full Name ..." id="fullname">
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control"  style="width: 35%;" placeholder="Email ..." id="email" autocomplete="off">
+                    <input type="email" class="form-control" formControlName="email" style="width: 35%;" placeholder="Email ..." id="email" autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <input type="text" max="10" min="10" class="form-control" style="width: 35%;" placeholder="Mobile ..." id="mobile" autocomplete="off">
+                    <input type="text" max="10" min="10" class="form-control" formControlName="mobile" style="width: 35%;" placeholder="Mobile ..." id="mobile" autocomplete="off">
                 </div>
 
                 <div class="form-group">
-                    <input type="file"  id="userPic">
+                    <input type="file"  id="userImage" 
+                        class="form-control"
+                        (change)="onFileSelect($event)"
+                        accept=".jpg"
+                        class="dynamic-text-input"
+                     >
                 </div>
+            </div>
+           
+            <div class="form-group">
+                <div *ngIf="preview && preview !== null" >
+                  <img [src]="preview" class="uploadedImage">
+                 </div>  
             </div>
 
             <h4 class="form-heading">Objective</h4>
             <hr class="line-color">
             <div style="margin-left: 30%;">
-                <textarea rows="4" cols="1" style="width: 400px;" placeholder="About your motto ..." class="form-control" id="objective"></textarea>
+                <textarea rows="4" cols="1" style="width: 400px;" formControlName="objective" placeholder="About your motto ..." class="form-control" id="objective"></textarea>
             </div>
-
+            <br>
             <h4 class="form-heading">Work Experience</h4>
             <hr class="line-color">
             <div class="form-group">
-                <!-- / form array -->
                 <div style="margin-left: 30%;">
-                    <input type="text" class="form-control" style="width: 35%; display: inline;" placeholder="company name" id="companyName">&nbsp;&nbsp;
-                    <!-- / add tool tip -->
-                    <button style="border-radius: 80px;" class="btn btn-primary" type="button"><i class="fa fa-plus add-more" aria-hidden="true" ></i></button>
-                    
+                    <div formArrayName="workExperience" 
+                        *ngFor="let item of resumeForm.get('workExperience').controls; let i = index;">
+                        <div [formGroupName]="i" >
+                            <input type="text" class="form-control" formControlName="workExperience"
+                             class="dynamic-text-input" placeholder="company name {{i+1}}" id="workExperience">&nbsp;&nbsp; 
+                             
+                             <button style="border-radius: 80px;" class="btn btn-primary" *ngIf="i === resumeForm.get('workExperience').controls.length-1"
+                                  type="button" (click)="addItem('workExperience')"><i class="fa fa-plus add-more" aria-hidden="true" ></i></button> 
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <h4 class="form-heading">Education</h4>
-            <hr class="line-color">
-            <div class="form-group">
-                <!-- / form array -->
-                <div style="margin-left: 30%;">
-                    <input type="text" class="form-control" style="width: 35%;" placeholder="education" id="schoolName">
-
-                </div>
-            </div>
-
+<!-- / make a remove also -->
             <h4 class="form-heading">Skills</h4>
             <hr class="line-color">
             <div class="form-group">
-                <!-- / form array -->
                 <div style="margin-left: 30%;">
-                    <input type="text" class="form-control" placeholder="skill" style="width: 35%;" id="skills">
-
+                    <div formArrayName="skills" 
+                        *ngFor="let item of resumeForm.get('skills').controls; let i = index;">
+                        <div [formGroupName]="i" >
+                            <input type="text" class="form-control" formControlName="skills"
+                            class="dynamic-text-input" placeholder="skill {{i+1}}" id="skills">&nbsp;&nbsp; 
+                            
+                            <button style="border-radius: 80px;" class="btn btn-primary" *ngIf="i === resumeForm.get('skills').controls.length-1"
+                                type="button" (click)="addItem('skills')"><i class="fa fa-plus add-more" aria-hidden="true" ></i></button> 
+                        </div>
+                    </div>
                 </div>
             </div>
 
