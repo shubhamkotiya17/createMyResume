@@ -30,6 +30,12 @@
                         accept=".jpg"
                         class="dynamic-text-input"
                      >
+                       <!-- Progress Bar -->
+                        <!-- <div class="progress form-group" *ngIf="resumeService.percentDone">
+                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                            [style.width.%]="resumeService.percentDone">
+                            </div>
+                        </div> -->
                 </div>
             </div>
            
@@ -54,7 +60,8 @@
                         <div [formGroupName]="i" >
                             <input type="text" class="form-control" formControlName="workExperience"
                              class="dynamic-text-input" placeholder="company name {{i+1}}" id="workExperience">&nbsp;&nbsp; 
-                             
+                             <input type="text" class="form-control" formControlName="post" placeholder="post" class="dynamic-text-input">&nbsp;&nbsp; 
+
                              <button style="border-radius: 80px;" class="btn btn-primary" *ngIf="i === resumeForm.get('workExperience').controls.length-1"
                                   type="button" (click)="addItem('workExperience')"><i class="fa fa-plus add-more" aria-hidden="true" ></i></button> 
                         </div>
@@ -87,7 +94,8 @@
             <br>
             <div class="form-group" style="margin-left: 60%; position: relative;">
                 <button class="btn btn-primary" id="cancel" type="button" style="width: 100px;background-color: gray;">CANCEL</button> &nbsp;
-                <button class="btn btn-primary" id="saveResume" type="submit" style="width: 100px;">SAVE</button>
+                <button class="btn btn-primary" id="downloadResume" 
+                 type="submit" style="width: 150px;">DOWNLOAD</button>
             </div>
         </form> 
     </div>
